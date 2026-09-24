@@ -7,9 +7,19 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:seed": "tsx scripts/generate-seed.ts",
+    "db:start": "supabase start",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "functions:serve": "supabase functions serve --env-file supabase/functions/.env",
+    "functions:test": "deno test --allow-env supabase/functions/tests"
   },
   "dependencies": {
+    "@justifi/webcomponents": "^6.14.3",
+    "@supabase/supabase-js": "^2.117.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
@@ -18,8 +28,12 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
+    "deno": "^2.9.6",
     "oxlint": "^1.81.0",
+    "supabase": "^2.117.0",
+    "tsx": "^4.23.15",
     "typescript": "~6.0.2",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
   }
 }

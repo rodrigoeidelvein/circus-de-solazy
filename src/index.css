@@ -5,12 +5,56 @@
   color: #1f1a17;
   background-color: #fdf6ec;
   -webkit-font-smoothing: antialiased;
+
+  --text: #1f1a17;
+  --text-muted: #6b5d52;
+  --bg: #fdf6ec;
+  --surface: #fffaf3;
+  --border: #e8d9c5;
+  --focus: #2563eb;
+
+  --ring-fill: #f4dcae;
+  --ring-stroke: #c98a3d;
+  --section-fill: #f6e9d6;
+
+  --tier-ringside: #be123c;
+  --tier-standard: #d97706;
+  --tier-gallery: #0f766e;
+  --seat-selected: #1f1a17;
+  --seat-reserved: #cbbfb2;
+  --seat-mark: #fdf6ec;
+  --seat-mark-reserved: #7a6a5d;
+
+  --warn-bg: #fdecc8;
+  --warn-text: #7c2d12;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f5ede1;
     background-color: #1a1412;
+
+    --text: #f5ede1;
+    --text-muted: #b7a898;
+    --bg: #1a1412;
+    --surface: #241c19;
+    --border: #3d302a;
+    --focus: #60a5fa;
+
+    --ring-fill: #3b2a1f;
+    --ring-stroke: #b07a3a;
+    --section-fill: #2a201c;
+
+    --tier-ringside: #fb7185;
+    --tier-standard: #fbbf24;
+    --tier-gallery: #2dd4bf;
+    --seat-selected: #f5ede1;
+    --seat-reserved: #4a3d36;
+    --seat-mark: #1a1412;
+    --seat-mark-reserved: #9a8a7d;
+
+    --warn-bg: #3f2412;
+    --warn-text: #fdba74;
   }
 }
 
@@ -22,4 +66,35 @@
 
 body {
   margin: 0;
+}
+
+/* Seat glyphs (shared by the map and the legend) */
+.tier-ringside { --tier-color: var(--tier-ringside); }
+.tier-standard { --tier-color: var(--tier-standard); }
+.tier-gallery { --tier-color: var(--tier-gallery); }
+.tier-neutral { --tier-color: var(--text-muted); }
+
+.seat--available .seat-shape {
+  fill: var(--tier-color);
+}
+
+.seat--selected .seat-shape {
+  fill: var(--seat-selected);
+}
+
+.seat--reserved .seat-shape {
+  fill: var(--seat-reserved);
+}
+
+.seat-mark {
+  fill: none;
+  stroke: var(--seat-mark);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.seat--reserved .seat-mark {
+  stroke: var(--seat-mark-reserved);
+  stroke-width: 1.6;
 }

@@ -1,0 +1,138 @@
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.summary-count {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-empty {
+  margin: 0.75rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.summary-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.summary-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.summary-seat {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  font-size: 0.9rem;
+}
+
+.summary-tier {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.summary-price {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-remove {
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.summary-remove:hover {
+  background: var(--section-fill);
+  color: var(--text);
+}
+
+.summary-message {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.summary-message:empty {
+  margin: 0;
+}
+
+.summary-message--warn {
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-weight: 600;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-size: 1.05rem;
+}
+
+.summary-total strong {
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.summary-actions .button {
+  flex: 1;
+  white-space: nowrap;
+  padding-inline: 0.75rem;
+}
+
+.summary-email {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.summary-email input {
+  font: inherit;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.summary-email input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.summary-email .summary-actions {
+  margin-top: 0.5rem;
+}

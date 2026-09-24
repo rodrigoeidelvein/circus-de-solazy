@@ -1,0 +1,123 @@
+.seat-map {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.seat-map-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  user-select: none;
+}
+
+.section-bg {
+  fill: var(--section-fill);
+}
+
+.section-label {
+  fill: var(--text-muted);
+  font-size: 15px;
+  font-weight: 600;
+  dominant-baseline: middle;
+}
+
+.ring {
+  fill: var(--ring-fill);
+  stroke: var(--ring-stroke);
+  stroke-width: 3;
+}
+
+.ring-inner {
+  fill: none;
+  stroke: var(--ring-stroke);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+  opacity: 0.7;
+}
+
+.ring-label {
+  fill: var(--text);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.entrance-label {
+  fill: var(--text-muted);
+  font-size: 12px;
+  font-style: italic;
+  text-anchor: middle;
+}
+
+.seat {
+  cursor: pointer;
+  outline: none;
+}
+
+.seat--reserved {
+  cursor: not-allowed;
+}
+
+.seat-glyph {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 120ms ease;
+}
+
+.seat--available:hover .seat-glyph,
+.seat--selected:hover .seat-glyph {
+  transform: scale(1.18);
+}
+
+.seat-focus {
+  fill: none;
+  stroke: var(--focus);
+  stroke-width: 2.5;
+  opacity: 0;
+}
+
+.seat:focus-visible .seat-focus {
+  opacity: 1;
+}
+
+.seat-tooltip {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: max-content;
+  padding: 0.5rem 0.7rem;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.2);
+}
+
+.seat-tooltip--above {
+  transform: translate(-50%, calc(-100% - 14px));
+}
+
+.seat-tooltip--below {
+  transform: translate(-50%, 14px);
+}
+
+.seat-tooltip-status {
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seat-glyph {
+    transition: none;
+  }
+}

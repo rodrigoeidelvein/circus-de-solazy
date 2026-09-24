@@ -1,0 +1,104 @@
+.checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.checkout-timer {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout-timer--urgent {
+  color: var(--warn-text);
+  font-weight: 600;
+}
+
+.checkout-seats {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.checkout-seats li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed var(--border);
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout-tier {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0.75rem 0 1rem;
+}
+
+.checkout-total strong {
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout-error {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border-radius: 8px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.checkout-form {
+  position: relative;
+  min-height: 12rem;
+}
+
+.checkout-confirming {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  font-weight: 600;
+}
+
+.checkout-spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  border-top-color: var(--text);
+  animation: checkout-spin 0.8s linear infinite;
+}
+
+@keyframes checkout-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkout-spinner {
+    animation: none;
+  }
+}
+
+.checkout-cancel {
+  width: 100%;
+  margin-top: 1rem;
+}
