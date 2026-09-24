@@ -15,6 +15,7 @@ export interface JustifiConfig {
   clientSecret: string
   /** Sub-account (acc_…) that takes the payments. */
   subAccount: string
+  /** Defaults to staging; https://api.justifi.ai is production. */
   baseUrl?: string
   fetch?: typeof fetch
   now?: () => number
@@ -37,7 +38,7 @@ const TOKEN_TTL_MS = 23 * 60 * 60 * 1000
 export type JustifiClient = ReturnType<typeof createJustifiClient>
 
 export function createJustifiClient(config: JustifiConfig) {
-  const baseUrl = config.baseUrl ?? 'https://api.justifi.ai'
+  const baseUrl = config.baseUrl ?? 'https://api.justifi-staging.com'
   const doFetch = config.fetch ?? fetch
   const now = config.now ?? Date.now
   // Cached for as long as the function instance stays warm.
@@ -70,7 +71,7 @@ export function createJustifiClient(config: JustifiConfig) {
   async function api(
     method: 'GET' | 'POST',
     path: string,
-    options: { body?: unknown; idempotencyKey?: string; subAccount?: boolean } = {},
+    options: { body?: unknown; idempotencyKey?: string; asSubAccount?: boolean } = {},
   ): Promise<unknown> {
     const headers: Record<string, string> = {
       Authorization: `Bearer ${await getAccessToken()}`,
@@ -78,7 +79,7 @@ export function createJustifiClient(config: JustifiConfig) {
     }
     if (options.body !== undefined) headers['Content-Type'] = 'application/json'
     if (options.idempotencyKey) headers['Idempotency-Key'] = options.idempotencyKey
-    if (options.subAccount) headers['Sub-Account'] = config.subAccount
+    if (options.asSubAccount) headers['Sub-Account'] = config.subAccount
     return send(path, {
       method,
       headers,
@@ -95,7 +96,7 @@ export function createJustifiClient(config: JustifiConfig) {
       const body = await api('POST', '/v1/checkouts', {
         body: { amount: amountCents, description },
         idempotencyKey,
-        subAccount: true,
+        asSubAccount: true,
       })
       return data<Checkout>(body)
     },
@@ -109,14 +110,14 @@ export function createJustifiClient(config: JustifiConfig) {
     },
 
     async getCheckout(checkoutId: string): Promise<Checkout> {
-      return data<Checkout>(await api('GET', `/v1/checkouts/${encodeURIComponent(checkoutId)}`, { subAccount: true }))
+      return data<Checkout>(await api('GET', `/v1/checkouts/${encodeURIComponent(checkoutId)}`, { asSubAccount: true }))
     },
 
     async refundPayment(paymentId: string, amountCents: number, idempotencyKey: string): Promise<{ id: string; status: string }> {
       const body = await api('POST', `/v1/payments/${encodeURIComponent(paymentId)}/refunds`, {
         body: { amount: amountCents, reason: 'customer_request' },
         idempotencyKey,
-        subAccount: true,
+        asSubAccount: true,
       })
       return data(body)
     },
